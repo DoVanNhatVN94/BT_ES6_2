@@ -96,7 +96,7 @@ let dataGlasses = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit consequatur soluta ad aut laborum amet.",
   },
 ];
-let array =[];
+let array = [];
 let count = -1;
 
 let listGlass = () => {
@@ -115,49 +115,64 @@ listGlass();
 let choseGlass = (id) => {
   console.log(id);
   let vitri = 0;
-  vitri = timGlass(id);     
+  vitri = timGlass(id);
   array.push(dataGlasses[vitri]);
   count++;
   // console.log(vitri);
-  console.log(array);
-  console.log(count);
-  show(dataGlasses[vitri].name,dataGlasses[vitri].brand,dataGlasses[vitri].color,dataGlasses[vitri].price,dataGlasses[vitri].description,dataGlasses[vitri].virtualImg);
+  console.log("l", array.length);
+  console.log("c", count);
+  show(
+    dataGlasses[vitri].name,
+    dataGlasses[vitri].brand,
+    dataGlasses[vitri].color,
+    dataGlasses[vitri].price,
+    dataGlasses[vitri].description,
+    dataGlasses[vitri].virtualImg
+  );
+};
+let removeGlasses = (Boolean) => {
+  if (array.length > 0) {
+    if (Boolean) {
+      if (count<array.length-1) count++;
+    } else {
+      if (count >= 1) count--;
+    }
 
-}
-let removeGlasses=(Boolean)=>{
-  if(count>0){
-    if(Boolean)
-  count++;
-  else
-  count--;
-  show(array[count].name,array[count].brand,array[count].color,array[count].price,array[count].description,array[count].virtualImg);
-  console.log(count);
+    show(
+      array[count].name,
+      array[count].brand,
+      array[count].color,
+      array[count].price,
+      array[count].description,
+      array[count].virtualImg
+    );
+   
+    console.log(array.length); console.log(count);
   }
-}
+};
 
-let show=(name,brand,color,price,description,virtualImg)=>{
+let show = (name, brand, color, price, description, virtualImg) => {
   let row = `
     <h4 class="my-4">${name} - ${brand} (${color})</h4>
     <span class="alert alert-warning">$${price}</span><span class="text text-success ml-3 my-3">Stocking</span>
     <p class="my-3">${description}</p>
 `;
-  let row2 =`
+  let row2 = `
   <img src="${virtualImg}" alt="">
   `;
-document.getElementById("glassesInfo").style.display="block";
-document.getElementById("glassesInfo").innerHTML=row;
-document.getElementById("avatar").innerHTML=row2;
-
-}
+  document.getElementById("glassesInfo").style.display = "block";
+  document.getElementById("glassesInfo").innerHTML = row;
+  document.getElementById("avatar").innerHTML = row2;
+};
 
 let timGlass = (id) => {
-  let vitri=0;
+  let vitri = 0;
   console.log(id);
   dataGlasses.map((glass, index) => {
     console.log(glass.id);
-    if (glass.id == id) {vitri = index;}
+    if (glass.id == id) {
+      vitri = index;
+    }
   });
   return vitri;
 };
-
-
